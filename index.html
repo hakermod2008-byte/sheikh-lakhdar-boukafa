@@ -1,0 +1,1321 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الموقع الرسمي لثانوية الشيخ لخضر بوكفة - عين البيضاء</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Font - Cairo -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brandNavy: {
+                            800: '#1e3a8a',
+                            900: '#0f172a',
+                            950: '#0a0f1d'
+                        },
+                        brandEmerald: {
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857'
+                        },
+                        brandGold: {
+                            400: '#fbbf24',
+                            500: '#f59e0b',
+                            600: '#d97706'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Cairo', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #f8fafc;
+        }
+        .glass-header {
+            background: rgba(15, 23, 42, 0.92);
+            backdrop-filter: blur(12px);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="text-slate-800 antialiased min-h-screen flex flex-col selection:bg-brandEmerald-500 selection:text-white">
+
+    <div class="bg-slate-950 text-slate-300 text-[11px] py-1.5 px-4 border-b border-slate-800/80">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div class="flex items-center gap-3">
+                <span class="inline-flex items-center gap-1 bg-brandEmerald-500/20 text-brandEmerald-400 font-bold px-2 py-0.5 rounded border border-brandEmerald-500/30">
+                    <i class="fa-solid fa-globe"></i> BROWSER DOMAIN
+                </span>
+                <span class="font-mono text-slate-300 font-semibold tracking-wide dir-ltr">
+                    https://www.sheikh-lakhdar-boukafa-highschool.dz
+                </span>
+            </div>
+            <div class="flex items-center gap-4 text-slate-400">
+                <span><i class="fa-solid fa-location-dot text-brandGold-400 ml-1"></i>عين البيضاء، أم البواقي - الجزائر</span>
+                <span id="currentDateDisplay" class="font-semibold text-slate-300 hidden sm:inline"></span>
+            </div>
+        </div>
+    </div>
+
+    <header class="glass-header text-white sticky top-0 z-40 shadow-xl border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo & School Name -->
+                <a href="#hero" class="flex items-center gap-3 group">
+                    <div class="w-12 h-12 bg-gradient-to-tr from-brandEmerald-600 via-teal-500 to-emerald-400 rounded-2xl flex items-center justify-center shadow-lg text-white font-extrabold text-2xl border border-white/20 group-hover:scale-105 transition transform">
+                        <i class="fa-solid fa-building-columns"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-lg sm:text-xl font-black tracking-tight text-white group-hover:text-brandEmerald-400 transition">ثانوية الشيخ لخضر بوكفة</h1>
+                        <p class="text-[11px] text-brandGold-400 font-bold tracking-wide">عين البيضاء - ولاية أم البواقي</p>
+                    </div>
+                </a>
+
+                <!-- Nav Links -->
+                <nav class="hidden lg:flex items-center gap-6 text-xs font-bold text-slate-300">
+                    <a href="#hero" class="hover:text-brandEmerald-400 transition py-1">الرئيسية</a>
+                    <a href="#about" class="hover:text-brandEmerald-400 transition py-1">عن الثانوية</a>
+                    <a href="#classes" class="hover:text-brandEmerald-400 transition py-1">الأقسام والشعب</a>
+                    <a href="#resources" class="hover:text-brandEmerald-400 transition py-1">بنك الامتحانات</a>
+                    <a href="#news" class="hover:text-brandEmerald-400 transition py-1">الإعلانات والأخبار</a>
+                    <a href="#contact" class="hover:text-brandEmerald-400 transition py-1">التواصل والمعلومات</a>
+                </nav>
+
+                <!-- Header Buttons -->
+                <div class="flex items-center gap-2">
+                    <button onclick="openPortalModal()" class="bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 px-3 py-2 rounded-xl text-xs font-bold transition flex items-center gap-2 shadow">
+                        <i class="fa-solid fa-user-graduate text-brandEmerald-400"></i>
+                        <span class="hidden sm:inline">فضاء التلاميذ</span>
+                    </button>
+                    <button id="modeToggleBtn" onclick="toggleAdminMode()" class="bg-brandGold-500 hover:bg-brandGold-600 text-slate-950 font-extrabold px-3.5 py-2 rounded-xl transition shadow flex items-center gap-2 text-xs">
+                        <i id="modeToggleIcon" class="fa-solid fa-user-shield"></i>
+                        <span id="modeToggleText">لوحة التحكم الإدارية</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div id="publicView" class="flex-grow">
+        
+        <!-- Hero Section -->
+        <section id="hero" class="relative bg-brandNavy-950 text-white py-16 sm:py-20 overflow-hidden border-b border-slate-800">
+            <!-- Background Elements -->
+            <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-brandEmerald-900/30 via-slate-950 to-brandNavy-950 z-0"></div>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid lg:grid-cols-12 gap-10 items-center">
+                    
+                    <!-- Hero Content -->
+                    <div class="lg:col-span-7 space-y-6 text-center lg:text-right">
+                        <div class="inline-flex items-center gap-2 bg-brandEmerald-500/10 border border-brandEmerald-500/30 text-brandEmerald-400 px-3.5 py-1.5 rounded-full text-xs font-bold shadow-inner">
+                            <i class="fa-solid fa-award text-brandGold-400"></i> مؤسسة تعليمية نموذجية تأسست سنة 1984
+                        </div>
+                        
+                        <h2 class="text-3xl sm:text-5xl font-black leading-tight tracking-tight">
+                            مرحباً بكم في البوابة الرقمية <br>
+                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-brandEmerald-400 via-teal-300 to-brandGold-400">لثانوية الشيخ لخضر بوكفة</span>
+                        </h2>
+                        
+                        <p class="text-slate-300 text-xs sm:text-sm leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                            صرح تربوي وعلمي متميز بمدينة عين البيضاء (ولاية أم البواقي). نهدف لتوفير أرقى المستويات التعليمية والتأطير البيداغوجي وتسهيل وصول الطلبة لجداول الحصص وبنك الفروض والامتحانات.
+                        </p>
+
+                        <!-- Stats Bar -->
+                        <div class="grid grid-cols-3 gap-3 sm:gap-4 pt-4 border-t border-slate-800/80 max-w-lg mx-auto lg:mx-0">
+                            <div class="bg-slate-900/80 p-3.5 rounded-2xl border border-slate-800 shadow">
+                                <span id="statTotalStudents" class="block text-2xl sm:text-3xl font-black text-brandEmerald-400">1400+</span>
+                                <span class="text-[11px] text-slate-400 font-bold">تلميذ متمدرس</span>
+                            </div>
+                            <div class="bg-slate-900/80 p-3.5 rounded-2xl border border-slate-800 shadow">
+                                <span id="statTotalClasses" class="block text-2xl sm:text-3xl font-black text-brandGold-400">32+</span>
+                                <span class="text-[11px] text-slate-400 font-bold">قسم وحجرة دراسية</span>
+                            </div>
+                            <div class="bg-slate-900/80 p-3.5 rounded-2xl border border-slate-800 shadow">
+                                <span class="block text-2xl sm:text-3xl font-black text-teal-300">1984</span>
+                                <span class="text-[11px] text-slate-400 font-bold">سنة التأسيس</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BAC Countdown Timer -->
+                    <div class="lg:col-span-5">
+                        <div class="bg-gradient-to-br from-slate-900 via-slate-900/90 to-brandNavy-900 border border-slate-700/70 rounded-3xl p-6 shadow-2xl relative overflow-hidden">
+                            <div class="absolute -left-10 -bottom-10 w-40 h-40 bg-brandEmerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                            
+                            <div class="text-center space-y-4 relative z-10">
+                                <div class="w-14 h-14 bg-gradient-to-tr from-brandGold-500 to-amber-300 text-slate-950 rounded-2xl flex items-center justify-center text-2xl mx-auto shadow-lg font-black">
+                                    <i class="fa-solid fa-hourglass-half"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-black text-white">العداد التنازلي لشهادة البكالوريا 2027</h3>
+                                    <p class="text-xs text-slate-400 mt-1">دورة جوان 2027 - بالتوفيق لجميع طلبة النهائي</p>
+                                </div>
+                                
+                                <div class="grid grid-cols-4 gap-2 text-center py-2">
+                                    <div class="bg-slate-950 p-3 rounded-2xl border border-slate-800 shadow">
+                                        <span id="bacDays" class="block text-2xl sm:text-3xl font-black text-brandEmerald-400">00</span>
+                                        <span class="text-[10px] text-slate-400 font-bold">يوم</span>
+                                    </div>
+                                    <div class="bg-slate-950 p-3 rounded-2xl border border-slate-800 shadow">
+                                        <span id="bacHours" class="block text-2xl sm:text-3xl font-black text-white">00</span>
+                                        <span class="text-[10px] text-slate-400 font-bold">ساعة</span>
+                                    </div>
+                                    <div class="bg-slate-950 p-3 rounded-2xl border border-slate-800 shadow">
+                                        <span id="bacMinutes" class="block text-2xl sm:text-3xl font-black text-white">00</span>
+                                        <span class="text-[10px] text-slate-400 font-bold">دقيقة</span>
+                                    </div>
+                                    <div class="bg-slate-950 p-3 rounded-2xl border border-slate-800 shadow">
+                                        <span id="bacSeconds" class="block text-2xl sm:text-3xl font-black text-brandGold-400">00</span>
+                                        <span class="text-[10px] text-slate-400 font-bold">ثانية</span>
+                                    </div>
+                                </div>
+
+                                <a href="#resources" class="inline-flex items-center justify-center gap-2 w-full bg-brandEmerald-600 hover:bg-brandEmerald-700 text-white font-bold py-3 rounded-xl text-xs transition shadow-lg">
+                                    <i class="fa-solid fa-folder-open"></i>
+                                    <span>تحميل موضوعات المراجعة النهائية</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="py-16 bg-white border-b border-slate-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-12 space-y-2">
+                    <span class="text-brandEmerald-600 font-bold text-xs bg-brandEmerald-50 px-3 py-1 rounded-full border border-brandEmerald-200">الأصالة والمجد التعليمي</span>
+                    <h2 class="text-2xl sm:text-4xl font-black text-slate-900">عن الثانوية والعلامة الشيخ لخضر بوكفة</h2>
+                    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">تاريخ حافل بالعطاء وتشييد معماري إسلامي يعكس الهوية العلمية بمدينة عين البيضاء</p>
+                </div>
+
+                <div class="grid lg:grid-cols-12 gap-8 items-center">
+                    <div class="lg:col-span-5">
+                        <div class="bg-slate-900 text-white rounded-3xl p-8 shadow-2xl relative border border-slate-800 overflow-hidden space-y-4">
+                            <div class="w-20 h-20 bg-gradient-to-tr from-brandGold-500 to-amber-300 text-slate-950 rounded-2xl flex items-center justify-center text-4xl shadow-xl font-black mb-4">
+                                <i class="fa-solid fa-mosque"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-brandGold-400">الشيخ لخضر بوكفة (رحمه الله)</h3>
+                            <p class="text-xs text-slate-300 leading-relaxed">
+                                عالم ومربٍ جليل من رجالات الإصلاح والعلم بمدينة عين البيضاء وولاية أم البواقي. كرس حياته لنشر العلوم الشرعية، واللغة العربية، وتربية الأجيال على القيم الإسلامية والوطنية.
+                            </p>
+                            <div class="pt-2 border-t border-slate-800 flex items-center gap-2 text-xs text-slate-400 font-bold">
+                                <i class="fa-solid fa-ribbon text-brandEmerald-400"></i>
+                                <span>تخليد الذكرى والاعتزاز بالهوية الوطنية</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-7 space-y-4 text-xs sm:text-sm text-slate-700 leading-relaxed">
+                        <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200/80 shadow-sm space-y-2">
+                            <h4 class="font-extrabold text-slate-900 text-base flex items-center gap-2">
+                                <i class="fa-solid fa-archway text-brandEmerald-600"></i>
+                                <span>الطراز المعماري والتأسيس (1984م)</span>
+                            </h4>
+                            <p>
+                                أنشئت الثانوية سنة 1984م بالحي العسكري الشريف ببلدية عين البيضاء. صُمم المشروع في بدايته ليكون معهدًا إسلامياً عالياً، مما منح المؤسسة نمطاً معمارياً أندلسياً إسلامياً فريداً ببوابة أثرية عالية ومساحة تفوق 7500 متر مربع.
+                            </p>
+                        </div>
+
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200/80 shadow-sm">
+                                <h5 class="font-bold text-slate-900 text-xs mb-1"><i class="fa-solid fa-chalkboard-user text-brandGold-500 ml-1.5"></i>المرافق الدراسية</h5>
+                                <p class="text-[11px] text-slate-600">تضم أكثر من 32 حجرة دراسية، مخابر للعلوم والفيزياء، مدرج للمحاضرات ومكتبة مركزية.</p>
+                            </div>
+                            <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200/80 shadow-sm">
+                                <h5 class="font-bold text-slate-900 text-xs mb-1"><i class="fa-solid fa-utensils text-brandEmerald-600 ml-1.5"></i>الخدمات الملحقة</h5>
+                                <p class="text-[11px] text-slate-600">مطعم مدرسي داخلي، قاعة رياضية مغلقة ومساحات خضراء تحفز النشاط والتركيز.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="classes" class="py-16 bg-slate-100/70 border-b border-slate-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-10 space-y-3">
+                    <span class="text-brandEmerald-600 font-bold text-xs bg-white px-3 py-1 rounded-full border border-slate-200 shadow-sm">التنظيم البيداغوجي</span>
+                    <h2 class="text-2xl sm:text-4xl font-black text-slate-900">الأقسام والصفوف الدراسية الفردية</h2>
+                    <p class="text-xs sm:text-sm text-slate-600">تصفح تفاصيل كل قسم مستقل، عدد التلاميذ، القاعة المخصصة، واستعمال الزمن الأسبوعي</p>
+                    
+                    <!-- Level Filter Buttons -->
+                    <div class="flex justify-center gap-2 pt-2 flex-wrap" id="publicLevelFilters">
+                        <button onclick="filterClassesByLevel('all')" id="btn-filter-all" class="px-4 py-2 rounded-xl text-xs font-bold bg-brandNavy-800 text-white shadow">جميع الأقسام</button>
+                        <button onclick="filterClassesByLevel('3as')" id="btn-filter-3as" class="px-4 py-2 rounded-xl text-xs font-bold bg-white text-slate-700 border hover:bg-slate-50">3 ثانوي (نهائي)</button>
+                        <button onclick="filterClassesByLevel('2as')" id="btn-filter-2as" class="px-4 py-2 rounded-xl text-xs font-bold bg-white text-slate-700 border hover:bg-slate-50">2 ثانوي</button>
+                        <button onclick="filterClassesByLevel('1as')" id="btn-filter-1as" class="px-4 py-2 rounded-xl text-xs font-bold bg-white text-slate-700 border hover:bg-slate-50">1 ثانوي (جذع مشترك)</button>
+                    </div>
+                </div>
+
+                <!-- Classes Grid -->
+                <div id="publicClassesContainer" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Dynamic Items Populated via JS -->
+                </div>
+            </div>
+        </section>
+
+        <section id="resources" class="py-16 bg-white border-b border-slate-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-10 space-y-2">
+                    <span class="text-brandEmerald-600 font-bold text-xs bg-brandEmerald-50 px-3 py-1 rounded-full border border-brandEmerald-200">البنك التعليمي الرقمي</span>
+                    <h2 class="text-2xl sm:text-4xl font-black text-slate-900">مكتبة الفروض والاختبارات المرفقة بالتصحيح</h2>
+                    <p class="text-xs sm:text-sm text-slate-600">تحميل مباشر للمذكرات، ملخصات الدروس، ونماذج امتحانات البكالوريا التجريبية</p>
+                </div>
+
+                <div id="publicResourcesContainer" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <!-- Dynamic Items Populated via JS -->
+                </div>
+            </div>
+        </section>
+
+        <section id="news" class="py-16 bg-slate-50 border-b border-slate-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4 border-b border-slate-200 pb-4">
+                    <div>
+                        <h2 class="text-2xl font-black text-slate-900">الإعلانات والمستجدات الرسمية</h2>
+                        <p class="text-xs text-slate-500 mt-1">آخر الأخبار والتنبيهات المدرسية الصادرة عن إدارة الثانوية</p>
+                    </div>
+                    <!-- Search Filter -->
+                    <div class="relative w-full md:w-72">
+                        <input type="text" id="newsSearchInput" oninput="renderPublicNews()" placeholder="بحث في الأخبار..." class="w-full pl-3 pr-9 py-2.5 text-xs rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brandEmerald-500 bg-white shadow-sm">
+                        <i class="fa-solid fa-magnifying-glass absolute right-3 top-3 text-slate-400 text-xs"></i>
+                    </div>
+                </div>
+
+                <div id="publicNewsContainer" class="grid md:grid-cols-3 gap-6">
+                    <!-- Dynamic Items Populated via JS -->
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid lg:grid-cols-12 gap-8 items-center">
+                    
+                    <div class="lg:col-span-5 space-y-6">
+                        <div>
+                            <span class="text-brandEmerald-600 font-bold text-xs bg-brandEmerald-50 px-3 py-1 rounded-full border border-brandEmerald-200">معلومات الاتصال</span>
+                            <h2 class="text-2xl font-black text-slate-900 mt-2">تواصل مع إدارة الثانوية</h2>
+                            <p class="text-xs text-slate-600 mt-1">نرحب باستفسارات الأولياء والطلبة خلال أوقات العمل الرسمية</p>
+                        </div>
+
+                        <div class="space-y-4 text-xs font-semibold text-slate-700">
+                            <div class="flex items-start gap-3 bg-slate-50 p-3.5 rounded-2xl border border-slate-200/80">
+                                <div class="w-10 h-10 bg-brandNavy-800 text-white rounded-xl flex items-center justify-center text-lg shrink-0">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-slate-900 text-xs">العنوان الجغرافي</h4>
+                                    <p class="text-slate-600 text-[11px] mt-0.5">الحي العسكري الشريف، بلدية عين البيضاء، ولاية أم البواقي - الجزائر</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-3 bg-slate-50 p-3.5 rounded-2xl border border-slate-200/80">
+                                <div class="w-10 h-10 bg-brandEmerald-600 text-white rounded-xl flex items-center justify-center text-lg shrink-0">
+                                    <i class="fa-solid fa-phone"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-slate-900 text-xs">الهاتف والفاكس الإداري</h4>
+                                    <p class="text-slate-600 text-[11px] mt-0.5 dir-ltr text-right">+213 (0) 32 41 22 10</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-3 bg-slate-50 p-3.5 rounded-2xl border border-slate-200/80">
+                                <div class="w-10 h-10 bg-brandGold-500 text-slate-950 rounded-xl flex items-center justify-center text-lg shrink-0">
+                                    <i class="fa-solid fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-slate-900 text-xs">البريد الإلكتروني الرسمي</h4>
+                                    <p class="text-slate-600 text-[11px] mt-0.5 dir-ltr text-right">contact@sheikh-lakhdar-boukafa-highschool.dz</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-7 bg-slate-50 p-6 sm:p-8 rounded-3xl border border-slate-200/80 shadow-md">
+                        <h3 class="text-base font-extrabold text-slate-900 mb-4">إرسال استفسار مباشر</h3>
+                        <form onsubmit="handleContactSubmit(event)" class="space-y-4 text-xs">
+                            <div class="grid sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block font-bold text-slate-700 mb-1">الاسم واللقب *</label>
+                                    <input type="text" required placeholder="مثال: عبد الرحمن محمد" class="w-full p-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-brandEmerald-500 focus:outline-none bg-white">
+                                </div>
+                                <div>
+                                    <label class="block font-bold text-slate-700 mb-1">الصفة *</label>
+                                    <select required class="w-full p-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-brandEmerald-500 focus:outline-none bg-white">
+                                        <option value="ولي تلميذ">ولي تلميذ</option>
+                                        <option value="تلميذ بالمؤسسة">تلميذ بالمؤسسة</option>
+                                        <option value="أستاذ / إداري">أستاذ / إداري</option>
+                                        <option value="زائر">زائر</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block font-bold text-slate-700 mb-1">موضوع الرسالة *</label>
+                                <input type="text" required placeholder="مثال: استفسار عن نتائج الفصل أو وثائق التسجيل" class="w-full p-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-brandEmerald-500 focus:outline-none bg-white">
+                            </div>
+                            <div>
+                                <label class="block font-bold text-slate-700 mb-1">نص الرسالة *</label>
+                                <textarea rows="4" required placeholder="اكتب تفاصيل الاستفسار هنا..." class="w-full p-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-brandEmerald-500 focus:outline-none bg-white"></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-brandNavy-800 hover:bg-brandNavy-900 text-white font-bold py-3 rounded-xl transition shadow">
+                                <i class="fa-solid fa-paper-plane ml-1"></i> إرسال الاستفسار الآن
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <footer class="bg-slate-950 text-slate-400 py-10 border-t border-slate-800 text-xs">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+                <div class="flex flex-col sm:flex-row items-center justify-between gap-4 border-b border-slate-800/80 pb-6">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-brandEmerald-600 rounded-xl flex items-center justify-center text-white text-lg font-bold">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-sm font-black text-white">ثانوية الشيخ لخضر بوكفة</h3>
+                            <p class="text-[11px] text-slate-400">عين البيضاء - ولاية أم البواقي</p>
+                        </div>
+                    </div>
+                    <div class="text-slate-400 font-mono text-[11px]">
+                        www.sheikh-lakhdar-boukafa-highschool.dz
+                    </div>
+                </div>
+
+                <div class="flex flex-col sm:flex-row items-center justify-between text-center sm:text-right gap-2 text-[11px] text-slate-400">
+                    <p>جميع الحقوق محفوظة © 2026/2027 - البوابة الرسمية لثانوية الشيخ لخضر بوكفة</p>
+                    <p class="text-slate-400">الجمهورية الجزائرية الديمقراطية الشعبية - وزارة التربية الوطنية</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <div id="adminView" class="flex-grow hidden bg-slate-100 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+            
+            <!-- Admin Banner -->
+            <div class="bg-gradient-to-r from-slate-900 via-brandNavy-900 to-slate-900 text-white p-6 rounded-3xl shadow-xl flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-r-8 border-brandGold-500">
+                <div>
+                    <div class="flex items-center gap-2">
+                        <span class="bg-brandGold-500 text-slate-950 text-[10px] font-black px-2 py-0.5 rounded-full uppercase">لوحة التحكم الإدارية</span>
+                        <h2 class="text-xl sm:text-2xl font-black">إدارة الأقسام والصفوف والتوقيت</h2>
+                    </div>
+                    <p class="text-xs text-slate-400 mt-1">يمكنك التعديل المباشر لعدد التلاميذ في الجدول، إضافة أقسام فردية، تعديل الجدول الأسبوعي، ونشر الأخبار</p>
+                </div>
+                <button onclick="openClassModal()" class="bg-brandEmerald-600 hover:bg-brandEmerald-700 text-white font-bold px-4 py-2.5 rounded-xl text-xs transition shadow flex items-center gap-2 shrink-0">
+                    <i class="fa-solid fa-plus-circle text-base"></i>
+                    <span>إضافة قسم جديد</span>
+                </button>
+            </div>
+
+            <!-- Inline Classes Table Management -->
+            <div class="bg-white rounded-3xl p-6 shadow-sm border border-slate-200/80 space-y-4">
+                <div class="flex items-center justify-between border-b pb-4">
+                    <div>
+                        <h3 class="text-base font-extrabold text-slate-900">إدارة الأقسام الفردية وعدد التلاميذ (تعديل مباشر)</h3>
+                        <p class="text-xs text-slate-500">عدّل الرقم مباشرة في الجدول واضغط زر الحفظ الفوري أمام كل قسم</p>
+                    </div>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-xs text-right text-slate-700">
+                        <thead class="bg-slate-900 text-white font-bold text-[11px]">
+                            <tr>
+                                <th class="p-3.5 rounded-tr-xl">المستوى</th>
+                                <th class="p-3.5">اسم القسم الفرعي</th>
+                                <th class="p-3.5">الشعبة</th>
+                                <th class="p-3.5">عدد التلاميذ (تعديل مباشر)</th>
+                                <th class="p-3.5">القاعة</th>
+                                <th class="p-3.5 text-center rounded-tl-xl">إجراءات</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminClassesTableBody">
+                            <!-- Populated via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Class Timetable Schedule Management -->
+            <div class="bg-white rounded-3xl p-6 shadow-sm border border-slate-200/80 space-y-4">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b pb-4 gap-3">
+                    <div>
+                        <h3 class="text-base font-extrabold text-slate-900">تعديل جدول استعمال الزمن الأسبوعي</h3>
+                        <p class="text-xs text-slate-500">اختر القسم ثم قم بتحديث اسم المادة والتوقيت واضغط زر حفظ الجدول</p>
+                    </div>
+                    <select id="adminClassScheduleSelect" onchange="loadAdminScheduleForClass()" class="p-2.5 border border-slate-300 rounded-xl text-xs font-bold bg-slate-50 focus:ring-2 focus:ring-brandEmerald-500 focus:outline-none">
+                        <!-- Populated via JS -->
+                    </select>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-xs text-right border border-slate-200 rounded-xl overflow-hidden">
+                        <thead class="bg-slate-900 text-white font-bold text-[11px]">
+                            <tr>
+                                <th class="p-2.5 border-b">اليوم</th>
+                                <th class="p-2.5 border-b">الحصة 1 (08:00 - 10:00)</th>
+                                <th class="p-2.5 border-b">الحصة 2 (10:00 - 12:00)</th>
+                                <th class="p-2.5 border-b">الحصة 3 (13:00 - 15:00)</th>
+                                <th class="p-2.5 border-b">الحصة 4 (15:00 - 17:00)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminScheduleTableBody" class="divide-y divide-slate-200">
+                            <!-- Populated via JS -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="flex justify-end pt-2">
+                    <button onclick="saveAdminSchedule()" class="bg-brandEmerald-600 hover:bg-brandEmerald-700 text-white font-bold px-5 py-2.5 rounded-xl text-xs transition shadow flex items-center gap-2">
+                        <i class="fa-solid fa-floppy-disk"></i>
+                        <span>حفظ جدول الحصص الأسبوعي للقسم المحدد</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Admin News & Resources -->
+            <div class="grid lg:grid-cols-2 gap-6">
+                <!-- News Management -->
+                <div class="bg-white rounded-3xl p-6 shadow-sm border border-slate-200/80 space-y-4">
+                    <div class="flex items-center justify-between border-b pb-3">
+                        <h3 class="text-base font-extrabold text-slate-900">إدارة الأخبار والإعلانات</h3>
+                        <button onclick="openNewsModal()" class="bg-slate-900 text-white px-3 py-1.5 rounded-lg text-xs font-bold hover:bg-slate-800 transition">
+                            <i class="fa-solid fa-plus ml-1"></i> إعلان جديد
+                        </button>
+                    </div>
+                    <div id="adminNewsList" class="space-y-3 max-h-80 overflow-y-auto pr-1 custom-scrollbar">
+                        <!-- Populated via JS -->
+                    </div>
+                </div>
+
+                <!-- Resources Management -->
+                <div class="bg-white rounded-3xl p-6 shadow-sm border border-slate-200/80 space-y-4">
+                    <div class="flex items-center justify-between border-b pb-3">
+                        <h3 class="text-base font-extrabold text-slate-900">إدارة ملفات الامتحانات والمواضيع</h3>
+                        <button onclick="openResourceModal()" class="bg-slate-900 text-white px-3 py-1.5 rounded-lg text-xs font-bold hover:bg-slate-800 transition">
+                            <i class="fa-solid fa-file-circle-plus ml-1"></i> ملف جديد
+                        </button>
+                    </div>
+                    <div id="adminResourcesList" class="space-y-3 max-h-80 overflow-y-auto pr-1 custom-scrollbar">
+                        <!-- Populated via JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reset Data Zone -->
+            <div class="bg-rose-50 border border-rose-200 rounded-3xl p-5 flex items-center justify-between">
+                <div>
+                    <h4 class="text-xs font-extrabold text-rose-900">إعادة الضبط واسترجاع البيانات الأصلية</h4>
+                    <p class="text-[11px] text-rose-700 mt-0.5">يمكنك مسح التغييرات والتجارب والرجوع إلى القائمة الافتراضية للثانوية</p>
+                </div>
+                <button onclick="resetAllData()" class="bg-rose-600 hover:bg-rose-700 text-white px-4 py-2 rounded-xl text-xs font-bold transition shadow">إعادة الضبط الشامل</button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toastContainer" class="fixed bottom-5 left-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+    <!-- Modal 1: Student Portal -->
+    <div id="portalModal" class="fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 relative shadow-2xl">
+            <button onclick="closePortalModal()" class="absolute top-4 left-4 text-slate-400 hover:text-slate-600">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+            <div class="text-center mb-6">
+                <div class="w-12 h-12 bg-brandEmerald-100 text-brandEmerald-600 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-2">
+                    <i class="fa-solid fa-user-lock"></i>
+                </div>
+                <h3 class="text-lg font-bold text-slate-900">فضاء التلاميذ والأولياء</h3>
+                <p class="text-xs text-slate-500 mt-1">سجل الدخول بواسطة رقم التسجيل المسلم من الإدارة</p>
+            </div>
+            <form onsubmit="handlePortalLogin(event)" class="space-y-4 text-xs">
+                <div>
+                    <label class="block font-bold text-slate-700 mb-1">رقم التسجيل / اسم المستخدم</label>
+                    <input type="text" placeholder="مثال: 2027xxxx" required class="w-full p-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-brandEmerald-500 focus:outline-none">
+                </div>
+                <div>
+                    <label class="block font-bold text-slate-700 mb-1">كلمة المرور</label>
+                    <input type="password" placeholder="••••••••" required class="w-full p-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-brandEmerald-500 focus:outline-none">
+                </div>
+                <button type="submit" class="w-full bg-brandEmerald-600 hover:bg-brandEmerald-700 text-white font-bold py-3 rounded-xl transition shadow">تسجيل الدخول</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal 2: Admin Password Gate Modal -->
+    <div id="adminAuthModal" class="fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-sm w-full p-6 relative shadow-2xl text-center">
+            <button onclick="closeAdminAuthModal()" class="absolute top-4 left-4 text-slate-400 hover:text-slate-600">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+            <div class="w-14 h-14 bg-brandGold-500/20 text-brandGold-600 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-3">
+                <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 mb-1">تسجيل الدخول للإدارة</h3>
+            <p class="text-xs text-slate-500 mb-4">كلمة المرور الإدارية الافتراضية هي: <strong class="text-slate-900 bg-slate-100 px-1.5 py-0.5 rounded border">admin123</strong></p>
+            <form onsubmit="verifyAdminPassword(event)" class="space-y-3">
+                <input type="password" id="adminPasswordInput" placeholder="أدخل كلمة المرور" required class="w-full p-3 border border-slate-300 text-xs text-center font-bold rounded-xl focus:ring-2 focus:ring-brandGold-500 focus:outline-none">
+                <button type="submit" class="w-full bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold py-3 rounded-xl transition shadow">تأكيد وتحديد الهوية</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal 3: Add/Edit Class Modal -->
+    <div id="classModal" class="fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 relative shadow-2xl">
+            <button onclick="closeClassModal()" class="absolute top-4 left-4 text-slate-400 hover:text-slate-600">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+            <h3 class="text-base font-extrabold text-slate-900 mb-4 border-b pb-2" id="classModalTitle">إضافة قسم جديد</h3>
+            <form onsubmit="saveClassForm(event)" class="space-y-3 text-xs">
+                <input type="hidden" id="classModalId">
+                <div>
+                    <label class="block font-bold text-slate-700 mb-1">المستوى الدراسي *</label>
+                    <select id="classModalLevel" required class="w-full p-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-brandEmerald-500 focus:outline-none">
+                        <option value="3as">السنة الثالثة ثانوي (نهائي)</option>
+                        <option value="2as">السنة الثانية ثانوي</option>
+                        <option value="1as">السنة الأولى ثانوي (جذع مشترك)</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block font-bold text-slate-700 mb-1">اسم القسم الفرعي *</label>
+                    <input type="text" id="classModalName" required placeholder="مثال: 3 علوم تجريبية 3" class="w-full p-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-brandEmerald-500 focus:outline-none">
+                </div>
+                <div>
+                    <label class="block font-bold text-slate-700 mb-1">اسم الشعبة / التخصص *</label>
+                    <input type="text" id="classModalTrack" required placeholder="مثال: علوم تجريبية" class="w-full p-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-brandEmerald-500 focus:outline-none">
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block font-bold text-slate-700 mb-1">عدد التلاميذ *</label>
+                        <input type="number" id="classModalStudents" value="32" min="1" max="60" required class="w-full p-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-brandEmerald-500 focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block font-bold text-slate-700 mb-1">القاعة الرئيسية</label>
+                        <input type="text" id="classModalRoom" placeholder="مثال: قاعة 12" class="w-full p-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-brandEmerald-500 focus:outline-none">
+                    </div>
+                </div>
+                <button type="submit" class="w-full bg-brandEmerald-600 hover:bg-brandEmerald-700 text-white font-bold py-3 rounded-xl transition shadow mt-2">حفظ القسم وتثبيته</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal 4: Add News Modal -->
+    <div id="newsModal" class="fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 relative shadow-2xl">
+            <button onclick="closeNewsModal()" class="absolute top-4 left-4 text-slate-400 hover:text-slate-600">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+            <h3 class="text-base font-extrabold text-slate-900 mb-4 border-b pb-2">نشر إعلان جديد</h3>
+            <form onsubmit="saveNewsForm(event)" class="space-y-3 text-xs">
+                <div>
+                    <label class="block font-bold text-slate-700 mb-1">عنوان الإعلان *</label>
+                    <input type="text" id="newsTitleInput" required placeholder="مثال: جدول امتحانات الفصل الأول" class="w-full p-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-brandEmerald-500 focus:outline-none">
+                </div>
+                <div>
+                    <label class="block font-bold text-slate-700 mb-1">فئة الإعلان *</label>
+                    <select id="newsCategoryInput" required class="w-full p-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-brandEmerald-500 focus:outline-none">
+                        <option value="البكالوريا">امتحان البكالوريا</option>
+                        <option value="الامتحانات">الفروض والامتحانات</option>
+                        <option value="الأنشطة">الأنشطة المدرسية</option>
+                        <option value="عام">إعلان عام</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block font-bold text-slate-700 mb-1">تفاصيل ومضمون الإعلان *</label>
+                    <textarea id="newsContentInput" rows="4" required placeholder="اكتب التفاصيل..." class="w-full p-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-brandEmerald-500 focus:outline-none"></textarea>
+                </div>
+                <button type="submit" class="w-full bg-brandEmerald-600 hover:bg-brandEmerald-700 text-white font-bold py-3 rounded-xl transition shadow">نشر الإعلان فوراً</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal 5: Add Resource Modal -->
+    <div id="resourceModal" class="fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 relative shadow-2xl">
+            <button onclick="closeResourceModal()" class="absolute top-4 left-4 text-slate-400 hover:text-slate-600">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+            <h3 class="text-base font-extrabold text-slate-900 mb-4 border-b pb-2">إضافة مستند إلى البنك الرقمي</h3>
+            <form onsubmit="saveResourceForm(event)" class="space-y-3 text-xs">
+                <div>
+                    <label class="block font-bold text-slate-700 mb-1">عنوان المستند / الاختيار *</label>
+                    <input type="text" id="resTitleInput" required placeholder="مثال: امتحان تجريبي في الفيزياء مع الحل" class="w-full p-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-brandEmerald-500 focus:outline-none">
+                </div>
+                <div>
+                    <label class="block font-bold text-slate-700 mb-1">الشعبة والوصف الموجز *</label>
+                    <input type="text" id="resDescInput" required placeholder="مثال: 3 علوم تجريبية - تصحيح نموذج البكالوريا" class="w-full p-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-brandEmerald-500 focus:outline-none">
+                </div>
+                <button type="submit" class="w-full bg-brandEmerald-600 hover:bg-brandEmerald-700 text-white font-bold py-3 rounded-xl transition shadow">حفظ الملف في المكتبة</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal 6: View Class Schedule Modal -->
+    <div id="scheduleModal" class="fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-2xl w-full p-6 relative shadow-2xl">
+            <button onclick="closeScheduleModal()" class="absolute top-4 left-4 text-slate-400 hover:text-slate-600">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+            <h3 id="scheduleModalTitle" class="text-base font-extrabold text-slate-900 mb-4 border-b pb-2">جدول استعمال الزمن</h3>
+            <div class="overflow-x-auto">
+                <table class="w-full text-xs text-right border border-slate-200 rounded-xl overflow-hidden">
+                    <thead class="bg-slate-900 text-white font-bold text-[11px]">
+                        <tr>
+                            <th class="p-2.5 border-b">اليوم</th>
+                            <th class="p-2.5 border-b">08:00 - 10:00</th>
+                            <th class="p-2.5 border-b">10:00 - 12:00</th>
+                            <th class="p-2.5 border-b">13:00 - 15:00</th>
+                            <th class="p-2.5 border-b">15:00 - 17:00</th>
+                        </tr>
+                    </thead>
+                    <tbody id="scheduleModalTableBody" class="divide-y divide-slate-200">
+                        <!-- Populated via JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- INITIAL DATA ARCHITECTURE ---
+        const INITIAL_CLASSES = [
+            { id: 'c1', level: '3as', name: '3 علوم تجريبية 1', track: 'علوم تجريبية', students: 34, room: 'قاعة 01' },
+            { id: 'c2', level: '3as', name: '3 علوم تجريبية 2', track: 'علوم تجريبية', students: 32, room: 'قاعة 02' },
+            { id: 'c3', level: '3as', name: '3 علوم تجريبية 3', track: 'علوم تجريبية', students: 30, room: 'قاعة 03' },
+            { id: 'c4', level: '3as', name: '3 رياضيات 1', track: 'رياضيات', students: 28, room: 'قاعة 04' },
+            { id: 'c5', level: '3as', name: '3 تقني رياضي 1', track: 'تقني رياضي', students: 29, room: 'قاعة 05' },
+            { id: 'c6', level: '3as', name: '3 آداب وفلسفة 1', track: 'آداب وفلسفة', students: 35, room: 'قاعة 06' },
+            { id: 'c7', level: '3as', name: '3 لغات أجنبية 1', track: 'لغات أجنبية', students: 31, room: 'قاعة 07' },
+            { id: 'c8', level: '2as', name: '2 علوم تجريبية 1', track: 'علوم تجريبية', students: 33, room: 'قاعة 08' },
+            { id: 'c9', level: '2as', name: '2 علوم تجريبية 2', track: 'علوم تجريبية', students: 32, room: 'قاعة 09' },
+            { id: 'c10', level: '2as', name: '2 تقني رياضي 1', track: 'تقني رياضي', students: 30, room: 'قاعة 10' },
+            { id: 'c11', level: '1as', name: '1 جذع مشترك علوم 1', track: 'جذع مشترك علوم', students: 36, room: 'قاعة 11' },
+            { id: 'c12', level: '1as', name: '1 جذع مشترك علوم 2', track: 'جذع مشترك علوم', students: 35, room: 'قاعة 12' },
+            { id: 'c13', level: '1as', name: '1 جذع مشترك آداب 1', track: 'جذع مشترك آداب', students: 34, room: 'قاعة 13' }
+        ];
+
+        const INITIAL_NEWS = [
+            { id: 'n1', title: 'سحب استدعاءات امتحان شهادة البكالوريا 2027', category: 'البكالوريا', date: '2026-09-15', content: 'نهيب بكافة تلاميذ السنة الثالثة ثانوي سحب استدعاءاتهم والاطلاع على مراكز الامتحان المحددة.' },
+            { id: 'n2', title: 'برنامج امتحانات وفروض الفصل الدراسي', category: 'الامتحانات', date: '2026-09-10', content: 'تم نشر جدول توقيت الفروض المحروسة والاختبارات لكافة الأقسام والمستويات الدراسية.' },
+            { id: 'n3', title: 'المسابقات الثقافية والرياضية المدرسية', category: 'الأنشطة', date: '2026-09-02', content: 'ينظم النادي العلمي للثانوية مسابقات ثقافية دورية تشجيعاً للموهوبين من أبنائنا الطلبة.' }
+        ];
+
+        const INITIAL_RESOURCES = [
+            { id: 'r1', title: 'سلسلة تمارين المتابعة الزمنية في الفيزياء', desc: 'السنة الثالثة ثانوي - علوم تجريبية + رياضيات' },
+            { id: 'r2', title: 'امتحان تجريبي في الرياضيات مع تصحيح بكالوريا', desc: 'شعبة العلوم التجريبية والتقني رياضي' },
+            { id: 'r3', title: 'منهجية تحليل المقالة الفلسفية بالخطوات', desc: 'جميع الشعب النهائية - شهادة البكالوريا' }
+        ];
+
+        const DEFAULT_SCHEDULE_TEMPLATE = [
+            { day: 'الأحد', t1: 'علوم طبيعية / رياضيات', t2: 'علوم فيزياء', t3: 'فلسفة', t4: 'لغة عربية' },
+            { day: 'الإثنين', t1: 'رياضيات', t2: 'لغة إنجليزية', t3: 'تاريخ وجغرافيا', t4: 'أعمال تطبيقية' },
+            { day: 'الثلاثاء', t1: 'علوم فيزياء', t2: 'لغة فرنسية', t3: 'تربية بدنية', t4: 'حصة دعم واستدراك' },
+            { day: 'الأربعاء', t1: 'رياضيات', t2: 'علوم إسلامية', t3: 'فلسفة', t4: 'علوم طبيعية' },
+            { day: 'الخميس', t1: 'تاريخ وجغرافيا', t2: 'لغة عربية', t3: 'أعمال موجهة', t4: 'دراسة حرة' }
+        ];
+
+        const BAC_TARGET_DATE = '2027-06-13T08:00:00';
+
+        // Local Storage Methods
+        function loadData(key, fallback) {
+            try {
+                const stored = localStorage.getItem('boukeffa_2027_' + key);
+                return stored ? JSON.parse(stored) : fallback;
+            } catch(e) {
+                return fallback;
+            }
+        }
+
+        function saveData(key, value) {
+            try {
+                localStorage.setItem('boukeffa_2027_' + key, JSON.stringify(value));
+            } catch(e) {}
+        }
+
+        // Global State
+        let appClasses = loadData('classes', INITIAL_CLASSES);
+        let appNews = loadData('news', INITIAL_NEWS);
+        let appResources = loadData('resources', INITIAL_RESOURCES);
+        let appSchedules = loadData('schedules', {});
+        let isAdminLoggedIn = false;
+        let activeLevelFilter = 'all';
+
+        // Ensure default timetables exist
+        function ensureSchedules() {
+            appClasses.forEach(c => {
+                if (!appSchedules[c.id]) {
+                    appSchedules[c.id] = JSON.parse(JSON.stringify(DEFAULT_SCHEDULE_TEMPLATE));
+                }
+            });
+            saveData('schedules', appSchedules);
+        }
+        ensureSchedules();
+
+        // Toast Messages
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toastContainer');
+            if (!container) return;
+
+            const toast = document.createElement('div');
+            const bgClass = type === 'success' ? 'bg-brandEmerald-700 text-white' : 'bg-rose-600 text-white';
+            const icon = type === 'success' ? 'fa-circle-check' : 'fa-triangle-exclamation';
+
+            toast.className = `${bgClass} px-4 py-3 rounded-2xl shadow-2xl flex items-center gap-3 text-xs font-bold pointer-events-auto transition-all transform duration-300 translate-y-2 opacity-0 border border-white/20`;
+            toast.innerHTML = `<i class="fa-solid ${icon} text-base"></i><span>${message}</span>`;
+
+            container.appendChild(toast);
+            setTimeout(() => toast.classList.remove('translate-y-2', 'opacity-0'), 10);
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-2');
+                setTimeout(() => toast.remove(), 300);
+            }, 3200);
+        }
+
+        // Mode Switching
+        function toggleAdminMode() {
+            if (isAdminLoggedIn) {
+                isAdminLoggedIn = false;
+                document.getElementById('adminView').classList.add('hidden');
+                document.getElementById('publicView').classList.remove('hidden');
+                document.getElementById('modeToggleText').innerText = 'لوحة التحكم الإدارية';
+                document.getElementById('modeToggleIcon').className = 'fa-solid fa-user-shield';
+                document.getElementById('modeToggleBtn').className = 'bg-brandGold-500 hover:bg-brandGold-600 text-slate-950 font-extrabold px-3.5 py-2 rounded-xl transition shadow flex items-center gap-2 text-xs';
+                refreshPublicUI();
+            } else {
+                document.getElementById('adminAuthModal').classList.remove('hidden');
+            }
+        }
+
+        function verifyAdminPassword(e) {
+            e.preventDefault();
+            const input = document.getElementById('adminPasswordInput').value;
+            if (input === 'admin123') {
+                isAdminLoggedIn = true;
+                closeAdminAuthModal();
+                document.getElementById('publicView').classList.add('hidden');
+                document.getElementById('adminView').classList.remove('hidden');
+                document.getElementById('modeToggleText').innerText = 'خروج من الإدارة';
+                document.getElementById('modeToggleIcon').className = 'fa-solid fa-right-from-bracket';
+                document.getElementById('modeToggleBtn').className = 'bg-rose-600 hover:bg-rose-700 text-white font-extrabold px-3.5 py-2 rounded-xl transition shadow flex items-center gap-2 text-xs';
+                refreshAdminUI();
+                showToast('تم تسجيل الدخول إلى لوحة التحكم الإدارية بنجاح!', 'success');
+            } else {
+                showToast('كلمة المرور غير صحيحة (الافتراضية: admin123)', 'error');
+            }
+        }
+
+        // Public Renderers
+        function refreshPublicUI() {
+            updateStatsCount();
+            renderPublicClasses();
+            renderPublicNews();
+            renderPublicResources();
+            startBacCountdown();
+        }
+
+        function updateStatsCount() {
+            const totalStudents = appClasses.reduce((sum, c) => sum + (parseInt(c.students, 10) || 0), 0);
+            document.getElementById('statTotalStudents').innerText = totalStudents + '+';
+            document.getElementById('statTotalClasses').innerText = appClasses.length + '+';
+        }
+
+        function filterClassesByLevel(level) {
+            activeLevelFilter = level;
+            ['all', '3as', '2as', '1as'].forEach(lvl => {
+                const btn = document.getElementById('btn-filter-' + lvl);
+                if (btn) {
+                    if (lvl === level) {
+                        btn.className = 'px-4 py-2 rounded-xl text-xs font-bold bg-brandNavy-800 text-white shadow';
+                    } else {
+                        btn.className = 'px-4 py-2 rounded-xl text-xs font-bold bg-white text-slate-700 border hover:bg-slate-50';
+                    }
+                }
+            });
+            renderPublicClasses();
+        }
+
+        function renderPublicClasses() {
+            const container = document.getElementById('publicClassesContainer');
+            container.innerHTML = '';
+
+            const filtered = activeLevelFilter === 'all' 
+                ? appClasses 
+                : appClasses.filter(c => c.level === activeLevelFilter);
+
+            if (filtered.length === 0) {
+                container.innerHTML = '<div class="col-span-full text-center py-8 text-slate-500 text-xs">لا توجد أقسام مسجلة في هذا المستوى.</div>';
+                return;
+            }
+
+            filtered.forEach(c => {
+                const levelTag = c.level === '3as' ? 'السنة الثالثة ثانوي' : c.level === '2as' ? 'السنة الثانية ثانوي' : 'السنة الأولى ثانوي';
+                const tagBg = c.level === '3as' ? 'bg-amber-100 text-amber-900 border-amber-200' : c.level === '2as' ? 'bg-blue-100 text-blue-900 border-blue-200' : 'bg-emerald-100 text-emerald-900 border-emerald-200';
+
+                const card = document.createElement('div');
+                card.className = 'bg-white rounded-3xl p-5 shadow-sm hover:shadow-md border border-slate-200/80 transition flex flex-col justify-between space-y-4';
+                card.innerHTML = `
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-[10px] font-extrabold px-2.5 py-1 rounded-full border ${tagBg}">${levelTag}</span>
+                            <span class="text-xs font-bold text-slate-500"><i class="fa-solid fa-door-closed text-brandEmerald-600 ml-1"></i>${c.room || 'قاعة 01'}</span>
+                        </div>
+                        <h3 class="text-base font-black text-slate-900">${c.name}</h3>
+                        <p class="text-xs text-slate-500 font-semibold mt-1">الشعبة: ${c.track}</p>
+                    </div>
+
+                    <div class="border-t border-slate-100 pt-3 flex items-center justify-between">
+                        <div class="flex items-center gap-1.5 text-xs text-slate-700 font-bold">
+                            <i class="fa-solid fa-users text-brandEmerald-600"></i>
+                            <span>${c.students} تلميذ</span>
+                        </div>
+                        <button onclick="viewPublicSchedule('${c.id}')" class="bg-slate-900 hover:bg-slate-800 text-white px-3.5 py-1.5 rounded-xl text-xs font-bold transition shadow-sm">
+                            <i class="fa-solid fa-calendar-days ml-1"></i> استعمال الزمن
+                        </button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function viewPublicSchedule(classId) {
+            const c = appClasses.find(item => item.id === classId);
+            if (!c) return;
+
+            document.getElementById('scheduleModalTitle').innerText = `جدول استعمال الزمن - (${c.name})`;
+            const tbody = document.getElementById('scheduleModalTableBody');
+            tbody.innerHTML = '';
+
+            const sched = appSchedules[classId] || DEFAULT_SCHEDULE_TEMPLATE;
+            sched.forEach(s => {
+                const tr = document.createElement('tr');
+                tr.className = 'hover:bg-slate-50 text-slate-700 font-semibold';
+                tr.innerHTML = `
+                    <td class="p-2.5 font-bold bg-slate-100 border-b">${s.day}</td>
+                    <td class="p-2.5 border-b">${s.t1 || '-'}</td>
+                    <td class="p-2.5 border-b">${s.t2 || '-'}</td>
+                    <td class="p-2.5 border-b">${s.t3 || '-'}</td>
+                    <td class="p-2.5 border-b">${s.t4 || '-'}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            document.getElementById('scheduleModal').classList.remove('hidden');
+        }
+
+        function renderPublicNews() {
+            const container = document.getElementById('publicNewsContainer');
+            const search = document.getElementById('newsSearchInput').value.toLowerCase();
+            container.innerHTML = '';
+
+            const filtered = appNews.filter(n => n.title.toLowerCase().includes(search) || n.content.toLowerCase().includes(search));
+
+            if (filtered.length === 0) {
+                container.innerHTML = '<div class="col-span-full text-center py-8 text-slate-500 text-xs">لا توجد إعلانات مطابقة للبحث.</div>';
+                return;
+            }
+
+            filtered.forEach(n => {
+                const card = document.createElement('div');
+                card.className = 'bg-white rounded-3xl p-5 shadow-sm border border-slate-200/80 space-y-3';
+                card.innerHTML = `
+                    <div class="flex items-center justify-between">
+                        <span class="bg-brandEmerald-100 text-brandEmerald-800 text-[10px] font-bold px-2.5 py-0.5 rounded-full">${n.category}</span>
+                        <span class="text-[11px] text-slate-400 font-bold"><i class="fa-regular fa-calendar ml-1"></i>${n.date}</span>
+                    </div>
+                    <h3 class="text-sm font-bold text-slate-900 leading-snug">${n.title}</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">${n.content}</p>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function renderPublicResources() {
+            const container = document.getElementById('publicResourcesContainer');
+            container.innerHTML = '';
+
+            appResources.forEach(r => {
+                const card = document.createElement('div');
+                card.className = 'bg-slate-50 hover:bg-white rounded-2xl p-4 border border-slate-200/80 shadow-sm flex items-center justify-between transition';
+                card.innerHTML = `
+                    <div class="space-y-1">
+                        <h4 class="text-xs font-bold text-slate-900">${r.title}</h4>
+                        <p class="text-[11px] text-slate-500">${r.desc}</p>
+                    </div>
+                    <button onclick="showToast('جاري بدء تحضير المستند للتحميل الفوري...')" class="bg-white hover:bg-brandEmerald-600 hover:text-white text-slate-700 p-2.5 rounded-xl text-xs transition border border-slate-200 shadow-sm shrink-0">
+                        <i class="fa-solid fa-download"></i>
+                    </button>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // Admin Renderers & Actions
+        function refreshAdminUI() {
+            renderAdminClassesTable();
+            populateScheduleClassSelect();
+            loadAdminScheduleForClass();
+            renderAdminNewsList();
+            renderAdminResourcesList();
+        }
+
+        function renderAdminClassesTable() {
+            const tbody = document.getElementById('adminClassesTableBody');
+            tbody.innerHTML = '';
+
+            appClasses.forEach(c => {
+                const tr = document.createElement('tr');
+                tr.className = 'hover:bg-slate-50 border-b border-slate-100 transition';
+                tr.innerHTML = `
+                    <td class="p-3.5 font-bold text-slate-700">${c.level === '3as' ? 'الثالثة ثانوي' : c.level === '2as' ? 'الثانية ثانوي' : 'الأولى ثانوي'}</td>
+                    <td class="p-3.5 font-extrabold text-brandEmerald-700 text-sm">${c.name}</td>
+                    <td class="p-3.5 font-semibold text-slate-600">${c.track}</td>
+                    <td class="p-3.5">
+                        <div class="flex items-center gap-2">
+                            <input type="number" min="1" max="60" value="${c.students || 30}" 
+                                id="student_input_${c.id}"
+                                onchange="updateClassStudentsInline('${c.id}', this.value)"
+                                class="w-20 p-2 text-center font-bold text-slate-900 bg-slate-100 border border-slate-300 rounded-xl focus:ring-2 focus:ring-brandEmerald-500 focus:bg-white focus:outline-none transition">
+                            <button onclick="updateClassStudentsInline('${c.id}', document.getElementById('student_input_${c.id}').value)" 
+                                title="حفظ التغيير" 
+                                class="bg-brandEmerald-600 hover:bg-brandEmerald-700 text-white p-2 rounded-xl text-xs font-bold transition shadow-sm">
+                                <i class="fa-solid fa-check"></i>
+                            </button>
+                        </div>
+                    </td>
+                    <td class="p-3.5">${c.room || 'غير محددة'}</td>
+                    <td class="p-3.5 text-center space-x-2 space-x-reverse">
+                        <button onclick="editClassModal('${c.id}')" class="bg-amber-500 hover:bg-amber-600 text-white px-3 py-1.5 rounded-xl text-[11px] font-bold shadow-sm"><i class="fa-solid fa-pen ml-1"></i>تعديل</button>
+                        <button onclick="deleteClass('${c.id}')" class="bg-rose-600 hover:bg-rose-700 text-white px-3 py-1.5 rounded-xl text-[11px] font-bold shadow-sm"><i class="fa-solid fa-trash ml-1"></i>حذف</button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function updateClassStudentsInline(id, val) {
+            const count = parseInt(val, 10);
+            if (isNaN(count) || count < 1) {
+                showToast('يرجى إدخال عدد تلاميذ صحيح', 'error');
+                return;
+            }
+            const c = appClasses.find(item => item.id === id);
+            if (c) {
+                c.students = count;
+                saveData('classes', appClasses);
+                updateStatsCount();
+                showToast(`تم تحديث عدد تلاميذ (${c.name}) إلى ${count} بنجاح!`, 'success');
+            }
+        }
+
+        function populateScheduleClassSelect() {
+            const select = document.getElementById('adminClassScheduleSelect');
+            select.innerHTML = '';
+            appClasses.forEach(c => {
+                const opt = document.createElement('option');
+                opt.value = c.id;
+                opt.innerText = c.name;
+                select.appendChild(opt);
+            });
+        }
+
+        function loadAdminScheduleForClass() {
+            const select = document.getElementById('adminClassScheduleSelect');
+            if (!select || !select.value) return;
+
+            const classId = select.value;
+            const sched = appSchedules[classId] || DEFAULT_SCHEDULE_TEMPLATE;
+
+            const tbody = document.getElementById('adminScheduleTableBody');
+            tbody.innerHTML = '';
+
+            sched.forEach((s, idx) => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td class="p-2 font-bold bg-slate-100 border-b text-slate-800">${s.day}</td>
+                    <td class="p-1 border-b"><input type="text" data-day="${idx}" data-col="t1" value="${s.t1 || ''}" class="sched-input w-full p-2 border rounded-lg text-xs"></td>
+                    <td class="p-1 border-b"><input type="text" data-day="${idx}" data-col="t2" value="${s.t2 || ''}" class="sched-input w-full p-2 border rounded-lg text-xs"></td>
+                    <td class="p-1 border-b"><input type="text" data-day="${idx}" data-col="t3" value="${s.t3 || ''}" class="sched-input w-full p-2 border rounded-lg text-xs"></td>
+                    <td class="p-1 border-b"><input type="text" data-day="${idx}" data-col="t4" value="${s.t4 || ''}" class="sched-input w-full p-2 border rounded-lg text-xs"></td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function saveAdminSchedule() {
+            const classId = document.getElementById('adminClassScheduleSelect').value;
+            if (!classId) return;
+
+            const inputs = document.querySelectorAll('.sched-input');
+            const sched = appSchedules[classId] || JSON.parse(JSON.stringify(DEFAULT_SCHEDULE_TEMPLATE));
+
+            inputs.forEach(input => {
+                const dayIdx = parseInt(input.getAttribute('data-day'), 10);
+                const col = input.getAttribute('data-col');
+                if (sched[dayIdx]) {
+                    sched[dayIdx][col] = input.value.trim();
+                }
+            });
+
+            appSchedules[classId] = sched;
+            saveData('schedules', appSchedules);
+            showToast('تم حفظ جدول الحصص لهذا القسم بنجاح!', 'success');
+        }
+
+        function renderAdminNewsList() {
+            const container = document.getElementById('adminNewsList');
+            container.innerHTML = '';
+
+            appNews.forEach(n => {
+                const div = document.createElement('div');
+                div.className = 'p-3.5 bg-slate-50 border border-slate-200 rounded-2xl flex items-center justify-between text-xs';
+                div.innerHTML = `
+                    <div>
+                        <h4 class="font-bold text-slate-800">${n.title}</h4>
+                        <span class="text-[10px] text-slate-400 font-semibold">${n.category} • ${n.date}</span>
+                    </div>
+                    <button onclick="deleteNews('${n.id}')" class="text-rose-600 hover:text-rose-800 text-xs font-bold p-1"><i class="fa-solid fa-trash"></i></button>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function renderAdminResourcesList() {
+            const container = document.getElementById('adminResourcesList');
+            container.innerHTML = '';
+
+            appResources.forEach(r => {
+                const div = document.createElement('div');
+                div.className = 'p-3.5 bg-slate-50 border border-slate-200 rounded-2xl flex items-center justify-between text-xs';
+                div.innerHTML = `
+                    <div>
+                        <h4 class="font-bold text-slate-800">${r.title}</h4>
+                        <span class="text-[10px] text-slate-400 font-semibold">${r.desc}</span>
+                    </div>
+                    <button onclick="deleteResource('${r.id}')" class="text-rose-600 hover:text-rose-800 text-xs font-bold p-1"><i class="fa-solid fa-trash"></i></button>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        // Modal Openers / Closers
+        function openClassModal() {
+            document.getElementById('classModalId').value = '';
+            document.getElementById('classModalTitle').innerText = 'إضافة قسم جديد';
+            document.getElementById('classModalName').value = '';
+            document.getElementById('classModalTrack').value = '';
+            document.getElementById('classModalStudents').value = '32';
+            document.getElementById('classModalRoom').value = '';
+            document.getElementById('classModal').classList.remove('hidden');
+        }
+
+        function editClassModal(id) {
+            const c = appClasses.find(item => item.id === id);
+            if (!c) return;
+
+            document.getElementById('classModalId').value = c.id;
+            document.getElementById('classModalTitle').innerText = 'تعديل بيانات القسم';
+            document.getElementById('classModalLevel').value = c.level;
+            document.getElementById('classModalName').value = c.name;
+            document.getElementById('classModalTrack').value = c.track;
+            document.getElementById('classModalStudents').value = c.students;
+            document.getElementById('classModalRoom').value = c.room || '';
+            document.getElementById('classModal').classList.remove('hidden');
+        }
+
+        function saveClassForm(e) {
+            e.preventDefault();
+            const id = document.getElementById('classModalId').value;
+            const level = document.getElementById('classModalLevel').value;
+            const name = document.getElementById('classModalName').value.trim();
+            const track = document.getElementById('classModalTrack').value.trim();
+            const students = parseInt(document.getElementById('classModalStudents').value, 10) || 30;
+            const room = document.getElementById('classModalRoom').value.trim() || 'قاعة عامة';
+
+            if (id) {
+                const c = appClasses.find(item => item.id === id);
+                if (c) {
+                    c.level = level;
+                    c.name = name;
+                    c.track = track;
+                    c.students = students;
+                    c.room = room;
+                }
+            } else {
+                const newId = 'c_' + Date.now();
+                appClasses.push({ id: newId, level, name, track, students, room });
+                appSchedules[newId] = JSON.parse(JSON.stringify(DEFAULT_SCHEDULE_TEMPLATE));
+            }
+
+            saveData('classes', appClasses);
+            saveData('schedules', appSchedules);
+            closeClassModal();
+            refreshAdminUI();
+            showToast('تم حفظ القسم بنجاح!', 'success');
+        }
+
+        function deleteClass(id) {
+            const c = appClasses.find(item => item.id === id);
+            if (!c) return;
+            appClasses = appClasses.filter(item => item.id !== id);
+            delete appSchedules[id];
+            saveData('classes', appClasses);
+            saveData('schedules', appSchedules);
+            refreshAdminUI();
+            showToast(`تم حذف قسم ${c.name} بنجاح`, 'success');
+        }
+
+        function saveNewsForm(e) {
+            e.preventDefault();
+            const title = document.getElementById('newsTitleInput').value.trim();
+            const category = document.getElementById('newsCategoryInput').value;
+            const content = document.getElementById('newsContentInput').value.trim();
+            const date = new Date().toISOString().split('T')[0];
+
+            appNews.unshift({ id: 'n_' + Date.now(), title, category, content, date });
+            saveData('news', appNews);
+            closeNewsModal();
+            renderAdminNewsList();
+            showToast('تم نشر الإعلان بنجاح!', 'success');
+        }
+
+        function deleteNews(id) {
+            appNews = appNews.filter(n => n.id !== id);
+            saveData('news', appNews);
+            renderAdminNewsList();
+            showToast('تم حذف الإعلان بنجاح', 'success');
+        }
+
+        function saveResourceForm(e) {
+            e.preventDefault();
+            const title = document.getElementById('resTitleInput').value.trim();
+            const desc = document.getElementById('resDescInput').value.trim();
+
+            appResources.unshift({ id: 'r_' + Date.now(), title, desc });
+            saveData('resources', appResources);
+            closeResourceModal();
+            renderAdminResourcesList();
+            showToast('تم إضافة المستند للمكتبة بنجاح!', 'success');
+        }
+
+        function deleteResource(id) {
+            appResources = appResources.filter(r => r.id !== id);
+            saveData('resources', appResources);
+            renderAdminResourcesList();
+            showToast('تم حذف المستند بنجاح', 'success');
+        }
+
+        function resetAllData() {
+            localStorage.clear();
+            appClasses = INITIAL_CLASSES;
+            appNews = INITIAL_NEWS;
+            appResources = INITIAL_RESOURCES;
+            appSchedules = {};
+            ensureSchedules();
+            refreshAdminUI();
+            showToast('تم استرجاع البيانات الافتراضية بنجاح!', 'success');
+        }
+
+        // Countdown Timer
+        function startBacCountdown() {
+            function updateTimer() {
+                const target = new Date(BAC_TARGET_DATE).getTime();
+                const now = new Date().getTime();
+                const diff = target - now;
+
+                if (diff <= 0) {
+                    document.getElementById('bacDays').innerText = '00';
+                    document.getElementById('bacHours').innerText = '00';
+                    document.getElementById('bacMinutes').innerText = '00';
+                    document.getElementById('bacSeconds').innerText = '00';
+                    return;
+                }
+
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+                document.getElementById('bacDays').innerText = days < 10 ? '0' + days : days;
+                document.getElementById('bacHours').innerText = hours < 10 ? '0' + hours : hours;
+                document.getElementById('bacMinutes').innerText = minutes < 10 ? '0' + minutes : minutes;
+                document.getElementById('bacSeconds').innerText = seconds < 10 ? '0' + seconds : seconds;
+            }
+            updateTimer();
+            setInterval(updateTimer, 1000);
+        }
+
+        // UI Handlers & Helpers
+        function openNewsModal() { document.getElementById('newsModal').classList.remove('hidden'); }
+        function closeNewsModal() { document.getElementById('newsModal').classList.add('hidden'); }
+        function openResourceModal() { document.getElementById('resourceModal').classList.remove('hidden'); }
+        function closeResourceModal() { document.getElementById('resourceModal').classList.add('hidden'); }
+        function closeClassModal() { document.getElementById('classModal').classList.add('hidden'); }
+        function closeScheduleModal() { document.getElementById('scheduleModal').classList.add('hidden'); }
+        function openPortalModal() { document.getElementById('portalModal').classList.remove('hidden'); }
+        function closePortalModal() { document.getElementById('portalModal').classList.add('hidden'); }
+        function closeAdminAuthModal() { document.getElementById('adminAuthModal').classList.add('hidden'); }
+
+        function handlePortalLogin(e) {
+            e.preventDefault();
+            showToast('مرحباً بك في الفضاء الرقمي المدرسي!', 'success');
+            closePortalModal();
+        }
+
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            showToast('تم إرسال استفسارك بنجاح للإدارة الرسمية!', 'success');
+            e.target.reset();
+        }
+
+        function updateCurrentDateDisplay() {
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const today = new Date().toLocaleDateString('ar-DZ', options);
+            const display = document.getElementById('currentDateDisplay');
+            if (display) display.innerText = today;
+        }
+
+        // Window Init
+        window.onload = function() {
+            updateCurrentDateDisplay();
+            refreshPublicUI();
+        }
+    </script>
+</body>
+</html>
+```
